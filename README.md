@@ -1,9 +1,6 @@
 # Métodos Computacionales - Segundo Semestre 2019
 
-
-Sin Jupyterlab: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ComputoCienciasUniandes/FISI2028-201920/master)
-
-Con Jupyterlab: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ComputoCienciasUniandes/FISI2028-201920/master?urlpath=lab)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ComputoCienciasUniandes/FISI2028-201920/master)
 
 Material del curso Métodos Computacionales de Uniandes
 
