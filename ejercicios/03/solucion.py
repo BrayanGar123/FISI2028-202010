@@ -94,8 +94,7 @@ def cuenta_palabra(archivo, n_letras=4):
 
     cuenta = {}
     for linea_completa in texto:
-        linea = linea_completa.split()
-        for palabra in linea:
+        for palabra in linea_completa.split():
             if(len(palabra)>=n_letras):
                 if palabra in cuenta.keys():
                     cuenta[palabra] += 1
