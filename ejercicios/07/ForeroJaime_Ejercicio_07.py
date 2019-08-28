@@ -61,7 +61,7 @@ def probabilidad_fechas_repetidas(n_intentos=10000, n_personas=20):
         fechas = genera_fechas(n_personas=n_personas)
         if hay_fechas_repetidas(fechas):
             conteo += 1
-    return conteo/n_intentos
+    return 1.0*conteo/n_intentos
 
 def barrido_probabilidades(n_personas_max=50):
     probabilidades = np.zeros(n_personas_max)
