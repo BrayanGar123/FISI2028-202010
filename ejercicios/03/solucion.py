@@ -3,7 +3,7 @@ import math
 # Solucion primera parte
 
 
-#Compute how many times, on average, do you have to throw a die (with only six faces) in order to reach reach a minimum of 100 points. In this game you start with 0 points, you throw the die and add the number you get to the total account. Use the results of random.random() to implement the die throw.
+# [1] (10 puntos) Compute how many times, on average, do you have to throw a die (with only six faces) in order to reach reach a minimum of 100 points. In this game you start with 0 points, you throw the die and add the number you get to the total account. Use the results of random.random() to implement the die throw.
 
 n_games = 10000
 n_try = []
@@ -25,7 +25,7 @@ promedio = suma/len(n_try)
 print(promedio)
 
 
-# Define a function distance that takes as arguments two lists a,b and computes the Euclidean distance between the two:
+# [2] (10 puntos) Define a function distance that takes as arguments two lists a,b and computes the Euclidean distance between the two:
 
 def distance(a,b):
     n = len(a)
@@ -39,7 +39,7 @@ print(distance([0,0], [1,1]))
 print(distance([1,5], [2,2]))
 print(distance([0,1,2], [2,3,4]))
 
-# Redefine the class Circle to include a new method called perimeter that returns the value of the circle's perimeter.
+# [3] (10 puntos) Redefine the class Circle to include a new method called perimeter that returns the value of the circle's perimeter.
 
 class Circle:
     def __init__(self, radius):
@@ -52,10 +52,8 @@ class Circle:
         return 2.0  * math.pi * self.radius
 
 
-#Define the class Vector3D to represent vectors in 3D. The class must have
-
+# [4] (10 puntos) Define the class Vector3D to represent vectors in 3D. The class must have
 #Three attributes: x, y, and z, to store the coordinates.
-
 #A method called dot that computes the dot product
 
 class Vector3D:
@@ -70,7 +68,7 @@ v = Vector3D(2, 0, 1)
 w = Vector3D(1, -1, 3)
 print(v.dot(w))
 
-# Import the module random and use the function shuffle to shuffle the contents of a list that has the integers from 0 to 9. Print the list before and after shuffling. Use random.shuffle? to read the documentation string for that function. 
+# [5] (10 puntos) Import the module random and use the function shuffle to shuffle the contents of a list that has the integers from 0 to 9. Print the list before and after shuffling. Use random.shuffle? to read the documentation string for that function. 
 
 import random
 
@@ -81,7 +79,11 @@ print(a)
 
 # Ejercicio 03 - Segunda parte.
 
+# [6] (30 puntos)
 # Funciones
+#    Encuentra la palabra que mas se repite en 'archivo'
+#    que tiene al menos 'n_letras'.
+
 def cuenta_palabra(archivo, n_letras=4):
     """
     Encuentra la palabra que mas se repite en 'archivo'
@@ -119,7 +121,7 @@ p, cuenta = cuenta_palabra("hamlet.txt", n_letras=n_letras)
 print("La palabra mas repetida con al menos {} letras es: {} que se encuentra {} veces\n".format(n_letras, p, cuenta))
 
 # Clases
-
+# [7] (20 puntos) Extienda la clase Vector3D para calcular el producto cruz entre vectores.
 class Vector3D:
     def __init__(self, x, y, z):
         self.x = x
