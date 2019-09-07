@@ -6,18 +6,18 @@ import matplotlib.pyplot as plt
 # {N_cara=1, N_sello=0},{ N_cara=4, N_sello=6}, 
 # {N_cara=35, N_sello=65}, {N_cara=320, N_sello=680}.
 
-def proba_h(h, cara, n_points=100):
+def proba_h(h, cara):
     if cara==0:
         return h
     if cara==1:
         return 1-h
 def likelihood(n_cara, n_sello, n_points=100):
-    h = np.linspace(0,1,n_points)
+    h = np.linspace(0,1, n_points)
     l = np.ones(n_points)
     for i in range(n_cara):
-        l = l * proba_h(h, 0, n_points=n_points)
+        l = l * proba_h(h, 0)
     for i in range(n_sello):
-        l = l * proba_h(h, 1, n_points=n_points)
+        l = l * proba_h(h, 1)
     return h, l
 
 def plot_likelihood(n_cara, n_sello):
@@ -45,7 +45,7 @@ plt.savefig("monedas.png", bbox_inches="tight")
 
 #2. (20 puntos) Implementar el código necesario para reproducir la Figura 2.9 (P(alpha|[x_i], beta)) del mismo libro, pero asumiendo solamente cuatro mediciones, x = [-5.2, -3.1, -2.8, -3.5] y ademas que beta=3.0.
 
-def proba_alpha(alpha, x, beta=3.0, n_points=100):
+def proba_alpha(alpha, x, beta=3.0):
     p = beta/np.pi
     p = p / (beta**2 + (x-alpha)**2)
     return p
@@ -54,7 +54,7 @@ def likelihood(x_data, n_points=100):
     alpha = np.linspace(-10,10,n_points)
     l = np.ones(n_points)
     for x in x_data:
-        l = l * proba_alpha(alpha, x, n_points=n_points)
+        l = l * proba_alpha(alpha, x)
     return alpha, l
 
 def plot_likelihood(x_data):
