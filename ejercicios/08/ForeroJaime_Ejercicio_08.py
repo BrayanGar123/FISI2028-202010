@@ -93,7 +93,7 @@ plt.xlabel("X")
 plt.ylabel("Y")
 plt.savefig("gaussian.png")
 
-# cálculo de números que siguen una distribución gaussiana usando Metrópolis-Hastings 
+# (20 puntos) cálculo de números que siguen una distribución gaussiana usando Metrópolis-Hastings 
 
 def gauss_metropolis(sigma, N=100000, delta=1.0):
     lista = [np.random.random()]

@@ -51,7 +51,7 @@ def proba_alpha(alpha, x, beta=3.0):
     return p
 
 def likelihood(x_data, n_points=100):
-    alpha = np.linspace(-10,10,n_points)
+    alpha = np.linspace(-10,4,n_points)
     l = np.ones(n_points)
     for x in x_data:
         l = l * proba_alpha(alpha, x)
