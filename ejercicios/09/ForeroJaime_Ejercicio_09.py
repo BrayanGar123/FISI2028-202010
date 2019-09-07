@@ -77,3 +77,42 @@ for i in range(len(datos)):
     plot_likelihood(datos[:i+1])
 
 plt.savefig("faro.png", bbox_inches="tight")
+
+# 3. (70 puntos) Graficar P(Q|[x_i]) donde x_i=[0.5, 1.0, 0.8, 0.9] son 
+#mediciones de las posiciones de desintegración de unas partículas, 
+#donde estas posiciones siguen la densidad de probabilidad P(x|Q) = exp(-Qx)/Q.
+# La gráfica debe tener cuatro paneles que muestran el cambio en la densidad 
+# de probabilidad a medida que llegan nuevas mediciones.
+
+
+def proba_Q(Q, x):
+    p = Q * np.exp(-Q*x)
+    return p
+
+def likelihood(x_data, n_points=100):
+    Q = np.linspace(1E-2,4.0, n_points)
+    l = np.ones(n_points)
+    for x in x_data:
+        l = l * proba_Q(Q, x)
+    return Q, l
+
+def plot_likelihood(x_data):
+    Q,l = likelihood(x_data)
+    plt.plot(Q, l/l.max())
+    plt.xlabel(r'$Q$')
+    plt.ylabel(r'P($Q$|x)')
+    label = 'x = {}'.format(x_data)
+    plt.title(label)
+
+
+plt.figure(figsize=(5,5))
+plt.subplots_adjust(hspace=0.4)
+plt.subplots_adjust(wspace=0.4)
+
+datos = np.array([0.5, 1.0, 0.8, 0.9])
+for i in range(len(datos)):
+    plt.subplot(2,2,i+1)
+    print(datos[:i+1])
+    plot_likelihood(datos[:i+1])
+
+plt.savefig("decae.png", bbox_inches="tight")
