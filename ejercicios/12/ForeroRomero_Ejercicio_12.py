@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #1.
-def f1(x):
+def f(x):
     return np.cos(x) * np.exp(-x**2-x)
 
 def gauss_quad(f, N=20):
@@ -12,14 +12,14 @@ def gauss_quad(f, N=20):
     return np.sum(w * f(x))
 
 print("Primera integral")
-print(gauss_quad(f1))
+print(gauss_quad(f))
 print()
 
 #2.
 def f(x):
     return np.cos(x)
 
-def f2(x):
+def g(x):
     return np.exp(-x**2 -x)    
 
 def metropolis_hastings_1D(f, N=100000, delta=1.0):
@@ -46,7 +46,7 @@ def mc_integral(f, g):
     return average * norm
 
 print("Segunda Integral")
-print(mc_integral(f, f2))
+print(mc_integral(f, g))
 print()
 
 
@@ -54,8 +54,8 @@ print()
 def f(r):
     return np.cos(r)
 
-def f2(r):
-    return np.exp(-r**2 - r)    
+def g(r):
+    return np.exp(-r**2)    
 
 def norm_gaussian(d=2, sigma=1.0):
     return np.sqrt((2.0*np.pi*sigma**2)**d)
@@ -79,17 +79,20 @@ def metropolis_hastings_D(f, N=100000, delta=1.0, d=2):
 
 def mc_integral_D(f, g, d=2):
     x = metropolis_hastings_D(g, d=d)    
-    r = np.sqrt(np.sum(x*x, axis=1) )
+    r = np.sqrt(np.sum(x*x, axis=1))
     average = np.average(f(r)) 
-    norm = norm_gaussian(d=d, sigma = np.sqrt(0.5))
+    norm = norm_gaussian(d=d, sigma = 1/np.sqrt(2))
     return average * norm
 
+
 print("Tercera Integral")
-print(mc_integral_D(f, f2, d=2))
+d=2
+print(mc_integral_D(f, g, d=d))
 print()
 
-d=3 
+
 print("Cuarta Integral")
-print(mc_integral_D(f, f2, d=3))
+d=3
+print(mc_integral_D(f, g, d=d))
 print()
 
