@@ -73,7 +73,7 @@ norma_likelihood = integral_likelihood(x_data, 1.0, 10.0)
 plt.figure()
 plt.plot(sigma, d2_like/norma_likelihood)
 plt.xlabel(r"$\sigma$")
-plt.ylabel(r"$d^2P($\sigma$|\{x_k\})/d\sigma^2$")
+plt.ylabel(r"$d^2P(\sigma|\{x_k\})/d\sigma^2$")
 plt.savefig("like_prime_prime.png")
 
 delta_sigma_cero = -segunda_derivada_likelihood(x_data, sigma_cero)/norma_likelihood
