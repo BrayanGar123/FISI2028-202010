@@ -16,7 +16,6 @@ def integrate_maxwellian(sigma, N=20):
 def derivative_maxwellian_integral(sigma, delta_sigma=0.1):
     b = integrate_maxwellian(sigma + delta_sigma)
     a = integrate_maxwellian(sigma - delta_sigma)
-    print(a, b, (b-a)/(2.0*delta_sigma))
     return (b-a)/(2.0*delta_sigma)
 
 
