@@ -10,7 +10,7 @@ def plot_vectors(data, row_names, col_names, figname=None):
     # calcula vectores propios
     cov = np.cov(data)
     valores, vectores = np.linalg.eig(cov)
-    orden_valores = np.argsort(valores)[::-1] # indices de los autovalores de menor a mayor
+    orden_valores = np.argsort(valores)[::-1] # indices de los autovalores de mayor a menor
     
     new_data = data.T @ vectores # esto hace el cambio de base al nuevo sistema de los autovectores
         
