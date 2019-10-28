@@ -5,9 +5,9 @@
 int main(){
   int i;
   float pi = 2.0*asin(1.0);
-  float theta;
-  float x;
-  float y;
+  float theta = 0.0;
+  float x = 0.0;
+  float y = 0.0;
   
   srand48(8);
 
