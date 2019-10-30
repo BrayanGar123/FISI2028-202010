@@ -2,6 +2,9 @@
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ComputoCienciasUniandes/FISI2028-201920/master)
 
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ComputoCienciasUniandes/FISI2026-201920/master?urlpath=lab/tree/ipynb)
+
+
 Material del curso Métodos Computacionales de Uniandes
 
 Universidad de los Andes  
