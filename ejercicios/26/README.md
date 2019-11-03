@@ -4,7 +4,7 @@ Objetivos de la clase
 - Aprender a leer y escribir archivos de texto desde C++.
 
 Códigos:
-- `arreglos.cpp`: Inicializa un array de tamaño fijo y lo usa a través de un puntero.
+- `arreglos.cpp`: Inicializa un array de tamaño fijo y lo usa a través de un puntero. Es el primer ejemplos sobre cómo pasar argumentos al `main()` desde la línea de comandos.
 - `arreglos_dinamicos.cpp`. Inicializa un array de tamaño dinámico.
 - `caracteres.cpp`: Inicializa y manipula cadenas de caracteres.
 - `archivos.cpp`: Lee y escribe en archivos de texto.
