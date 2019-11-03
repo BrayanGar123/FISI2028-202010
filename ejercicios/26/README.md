@@ -8,4 +8,4 @@ Códigos:
 - `arreglos_dinamicos.cpp`. Inicializa un array de tamaño dinámico.
 - `caracteres.cpp`: Inicializa y manipula cadenas de caracteres.
 - `archivos.cpp`: Lee y escribe en archivos de texto.
-- ``
+- `suma.cpp`: Lee dos archivos y suma los valores que hay en cada uno.
