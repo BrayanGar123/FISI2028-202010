@@ -3,28 +3,28 @@
 #include <cmath>
 using namespace std;
 
-void initialize_state(float *s);
-void evolve_state_rk4(float g, float friccion, float delta_t, float *s);
-void solve(float g, float friccion, float delta_t, float t_max, string filename);
-void derivative(float g, float friccion, float *d, float *s);
+void initialize_state(double *s);
+void evolve_state_rk4(double g, double friccion, double delta_t, double *s);
+void solve(double g, double friccion, double delta_t, double t_max, string filename);
+void derivative(double g, double friccion, double *d, double *s);
 
 int main(){
-  float delta_t=0.01;
-  float t_max =2.0;
-  float g=9.8;
+  double delta_t=0.01;
+  double t_max =2.0;
+  double g=9.8;
   solve(g, 0.0,  delta_t, t_max, "sin_friccion.dat");
   solve(g, 0.7,  delta_t, t_max, "con_friccion.dat");
   return 0;
 }
 
-void initialize_state(float *s){
+void initialize_state(double *s){
   s[0] = 0.0; //posicion x
   s[1] = 0.0; //posicion y
   s[2] = 10.0; //velocidad x
   s[3] = 10.0; //velocidad y
 }
 
-void derivative(float g, float friccion, float *d, float *s){
+void derivative(double g, double friccion, double *d, double *s){
   // derivada de la posicion x es la velocidad x
   d[0] = s[2];
   
@@ -38,13 +38,13 @@ void derivative(float g, float friccion, float *d, float *s){
   d[3] = -g - (friccion * s[3] * s[3] / sqrt(s[2]*s[2] + s[3]*s[3]));
 }
 
-void evolve_state_rk4(float g, float friccion, float delta_t, float *s){
-  float d1[4];
-  float d2[4];
-  float d3[4];
-  float d4[4];
-  float d[4];
-  float tmp_s[4];
+void evolve_state_rk4(double g, double friccion, double delta_t, double *s){
+  double d1[4];
+  double d2[4];
+  double d3[4];
+  double d4[4];
+  double d[4];
+  double tmp_s[4];
   int i;
   
   /*primer paso RK*/
@@ -83,9 +83,9 @@ void evolve_state_rk4(float g, float friccion, float delta_t, float *s){
 
 }
 
-void solve(float g, float friccion, float delta_t, float t_max, string filename){
-  float t=0;
-  float state[4];
+void solve(double g, double friccion, double delta_t, double t_max, string filename){
+  double t=0;
+  double state[4];
   ofstream outfile;
   outfile.open(filename);
 
@@ -97,5 +97,3 @@ void solve(float g, float friccion, float delta_t, float t_max, string filename)
   }
   outfile.close();
 }
-
-
