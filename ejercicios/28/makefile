@@ -8,7 +8,7 @@ con_friccion.dat : solve.x
 	./solve.x
 
 solve.x: solve.cpp
-	g++ solve.cpp -o solve.x
+	c++ solve.cpp -o solve.x
 
 clean:
 	rm -f *~ solve.x sin_friccion.dat con_friccion.dat friccion.png
