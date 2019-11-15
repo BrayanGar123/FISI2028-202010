@@ -11,9 +11,9 @@ void derivative(float g, float friccion, float *d, float *s);
 int main(){
   float delta_t=0.01;
   float t_max =2.0;
-  float friccion=0.0;
   float g=9.8;
-  solve(g, friccion, delta_t, t_max, "solve.dat");
+  solve(g, 0.0,  delta_t, t_max, "sin_friccion.dat");
+  solve(g, 0.7,  delta_t, t_max, "con_friccion.dat");
   return 0;
 }
 
@@ -47,16 +47,36 @@ void evolve_state_rk4(float g, float friccion, float delta_t, float *s){
   float tmp_s[4];
   int i;
   
-  /*First RK step*/
+  /*primer paso RK*/
   for(i=0;i<4;i++){
     tmp_s[i] = s[i];
   }  
   derivative(g, friccion, d1, tmp_s);  
   
+  /*segundo paso RK*/
   for(i=0;i<4;i++){
-    d[i] = d1[i];
+    tmp_s[i] = s[i] + 0.5 * delta_t * d1[i];
+  }  
+  derivative(g, friccion, d2, tmp_s);  
+
+  /*tercer paso RK*/
+  for(i=0;i<4;i++){
+    tmp_s[i] = s[i] + 0.5 * delta_t * d2[i];
+  }  
+  derivative(g, friccion, d3, tmp_s);  
+
+  /*cuarto paso RK*/
+  for(i=0;i<4;i++){
+    tmp_s[i] = s[i] + delta_t * d3[i];
+  }  
+  derivative(g, friccion, d4, tmp_s);  
+
+  /*promedia las cuatro derivadas*/
+  for(i=0;i<4;i++){
+    d[i] = (d1[i] + 2.0 * d2[i] + 2.0 * d3[i] + d4[i])/6.0;
   }  
 
+  /*da el paso final*/
   for(i=0;i<4;i++){
     s[i] = s[i] + d[i]*delta_t;
   }  
