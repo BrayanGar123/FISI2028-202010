@@ -23,7 +23,7 @@ int main(int argc, char **argv){
 
   n_x=atoi(argv[1]);
 
-  delta_x = 2.0/(n_x-1);
+  delta_x = 2.0/n_x;
   delta_t = 0.5 * delta_x * delta_x;
   
   psi  = new double [n_x];
