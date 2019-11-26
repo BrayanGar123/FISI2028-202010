@@ -15,15 +15,13 @@ int main(int argc, char **argv){
   double *psi_past = NULL;
   int n_x;
   int n_t=0;
-  int n;
-  double t_max=1.0;
   double delta_x ;
   double delta_t ;
   double diff=1.0;
 
   n_x=atoi(argv[1]);
 
-  delta_x = 2.0/n_x;
+  delta_x = 2.0/(n_x-1);
   delta_t = 0.5 * delta_x * delta_x;
   
   psi  = new double [n_x];
