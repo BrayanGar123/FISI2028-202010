@@ -28,12 +28,10 @@ int main(int argc, char **argv){
   psi_past  = new double [n_x];
 
   init(psi, n_x);
-  //  print(psi, n_x);
   
   while(diff > 1E-6){
     copy(psi_past, psi, n_x);
     evolve(psi, psi_past, delta_t, delta_x, n_x);
-    //    print(psi, n_x);
     diff = difference(psi, psi_past, n_x);
     n_t += 1;
   }
