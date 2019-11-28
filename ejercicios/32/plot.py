@@ -39,6 +39,5 @@ def grafica(datafile, plotfile, plotlabel):
 
 
     plt.savefig(plotfile, bbox_inches='tight')
-#    plt.savefig(plotfile)
 
 grafica("datos.dat", "resultado.png", "$N_x=100$ ,  $N_{t}=1000$")
