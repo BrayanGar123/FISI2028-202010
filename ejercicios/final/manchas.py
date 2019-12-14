@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.fftpack
 
 # Leo y recorto los datos
 data = np.loadtxt("monthrg.dat")
