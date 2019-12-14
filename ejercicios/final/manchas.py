@@ -15,8 +15,8 @@ fecha = fecha[ii]
 n_points = len(manchas)
 
 # Calculo la transformada de Fourier
-fft_manchas = scipy.fftpack.fft(manchas)
-frecuencias = scipy.fftpack.fftfreq(n_points, 1)
+fft_manchas = np.fft.fft(manchas)
+frecuencias = np.fft.fftfreq(n_points, 1)
 fft_norm = np.abs(fft_manchas)
 
 # encuentra la frecuencia dominante
@@ -32,7 +32,7 @@ ii_bajas = np.abs(frecuencias) < (frecuencias[ii])
 fft_manchas[ii_altas | ii_bajas] = 0.0
 
 # Calculo la transformada inversa
-manchas_dominante = scipy.fftpack.ifft(fft_manchas)
+manchas_dominante = np.fft.ifft(fft_manchas)
 
 plt.title(r"El per\'iodo es de {:.2f} a\~nos".format(periodo_year))
 plt.plot(fecha, manchas+ mean_manchas, label='datos')
