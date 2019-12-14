@@ -44,7 +44,7 @@ mean_sigma = np.mean(sigma_values)
 std_sigma = np.std(sigma_values)
 title = "Mean = {:.1f}, Std = {:.1f}".format(mean_sigma, std_sigma)
 
-plt.rc('text', usetex=True)
+
 plt.figure()
 plt.hist(sigma_values, density=True, bins=30)
 plt.xlabel(r"$\sigma$")

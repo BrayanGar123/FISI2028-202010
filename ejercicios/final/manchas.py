@@ -34,7 +34,6 @@ fft_manchas[ii_altas | ii_bajas] = 0.0
 # Calculo la transformada inversa
 manchas_dominante = scipy.fftpack.ifft(fft_manchas)
 
-plt.rc('text', usetex=True)
 plt.title(r"El per\'iodo es de {:.2f} a\~nos".format(periodo_year))
 plt.plot(fecha, manchas+ mean_manchas, label='datos')
 plt.plot(fecha, np.real(manchas_dominante) + mean_manchas, label='frecuencia dominante')
