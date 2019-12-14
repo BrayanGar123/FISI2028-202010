@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.fftpack
 
-
+# Leo y recorto los datos
 data = np.loadtxt("monthrg.dat")
 fecha = data[:,0] + data[:,1]/12.0
 manchas = data[:,3]
@@ -12,8 +12,9 @@ ii = fecha>1900
 mean_manchas = np.mean(manchas[ii])
 manchas = manchas[ii] - mean_manchas
 fecha = fecha[ii]
-
 n_points = len(manchas)
+
+# Calculo la transformada de Fourier
 fft_manchas = scipy.fftpack.fft(manchas)
 frecuencias = scipy.fftpack.fftfreq(n_points, 1)
 fft_norm = np.abs(fft_manchas)
@@ -33,15 +34,11 @@ fft_manchas[ii_altas | ii_bajas] = 0.0
 # Calculo la transformada inversa
 manchas_dominante = scipy.fftpack.ifft(fft_manchas)
 
-
- 
-#plt.vlines(frecuencias, np.zeros(n_points), fft_norm, linewidth=4)
 plt.rc('text', usetex=True)
 plt.title(r"El per\'iodo es de {:.2f} a\~nos".format(periodo_year))
 plt.plot(fecha, manchas+ mean_manchas, label='datos')
-plt.plot(fecha, manchas_dominante + mean_manchas, label='frecuencia dominante')
+plt.plot(fecha, np.real(manchas_dominante) + mean_manchas, label='frecuencia dominante')
 plt.xlabel('Frecuencia (1/mes)')
 plt.ylabel('Norma FFT')
-plt.grid()
 plt.legend()
 plt.savefig('manchas.png')
