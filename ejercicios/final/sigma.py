@@ -34,8 +34,6 @@ def mcmc(x_values, n_points):
             sigma_values[i] = sigma_old
     return sigma_values
 
-
-
 # carga los datos observacionales
 x_data = np.loadtxt('valores.txt')
 
@@ -44,7 +42,9 @@ n_points = 100
 sigma_values = mcmc(x_data, 100000)
 mean_sigma = np.mean(sigma_values)
 std_sigma = np.std(sigma_values)
-title = "Mean = {:.2f}, Std = {:.2f}".format(mean_sigma, std_sigma)
+title = "Mean = {:.1f}, Std = {:.1f}".format(mean_sigma, std_sigma)
+
+plt.rc('text', usetex=True)
 plt.figure()
 plt.hist(sigma_values, density=True, bins=30)
 plt.xlabel(r"$\sigma$")
