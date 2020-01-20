@@ -1,0 +1,12 @@
+name: Lab_Metodos
+channels:
+        - conda-forge
+dependencies:
+        - python=3
+        - numpy
+        - pandas
+        - scipy
+        - matplotlib
+        - seaborn
+        - scikit-learn
+        - -r binder/requirements.txt
