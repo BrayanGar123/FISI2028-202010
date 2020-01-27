@@ -1,7 +1,7 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
 
-NUM_TRIALS=10
+NUM_TRIALS=100
 
 if [ ! $# -eq 3 ]
 then
@@ -16,8 +16,9 @@ fi
 
 [ -f $3 ] && echo "File: <$3> exists and will be overwritten" 1>&2
 
-printf "Checks passed, running the calculations" >&2
-printf "Process id=%d" $$
+printf "Checks passed, running the calculations\n" >&2
+printf "Process id=%d\n" $$
+
 echo -e "experiment\tdata" > $3
 for it in `seq $NUM_TRIALS`
 do
