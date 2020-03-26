@@ -1,12 +1,67 @@
-name: Lab_Metodos
+name: fisi2028
 channels:
-        - conda-forge
+  - conda-forge
+  - defaults
 dependencies:
-        - python=3
-        - numpy
-        - pandas
-        - scipy
-        - matplotlib
-        - seaborn
-        - scikit-learn
-        - -r binder/requirements.txt
+  - click
+  - configparser
+  - cryptography
+  - cython
+  - decorator
+  - emoji
+  - graphite2
+  - graphviz
+  - h5py
+  - hdf5
+  - imagemagick
+  - ipykernel
+  - ipython
+  - ipython_genutils
+  - ipywidgets
+  - jupyter_client
+  - jupyter_core
+  - keras-applications
+  - keras-preprocessing
+  - kiwisolver
+  - markdown
+  - markupsafe
+  - matplotlib
+  - matplotlib-base
+  - mpmath
+  - nb_conda_kernels
+  - nbconvert
+  - nbformat
+  - nltk
+  - notebook
+  - numba
+  - numpy
+  - pandas
+  - pandoc
+  - pandocfilters
+  - pip
+  - progressbar2
+  - pycountry
+  - pycparser
+  - pytest
+  - pytest-runner
+  - python=3
+  - python-dateutil
+  - python-utils
+  - python_abi
+  - scikit-learn
+  - scipy
+  - seaborn
+  - statsmodels
+  - sympy
+  - tensorboard
+  - tensorflow
+  - tensorflow-base
+  - tensorflow-estimator
+  - tqdm
+  - traitlets
+  - tweepy
+  - unicodedata2
+  - vegasflow
+  - widgetsnbextension
+  - wordcloud
+  - -r binder/requirements.txt

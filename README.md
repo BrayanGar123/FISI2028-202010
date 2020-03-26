@@ -3,6 +3,15 @@
 ### Entornos de programación académica en línea:
 * [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jpmallarino/FISI2028-202010/master?urlpath=lab/tree/ipynb)
 * Azure cloud service de [Uniandes ![Uniandes](imagenes/andes_32px.png)](http://facciencias.az.uniandes.edu.co/jhub/)
+* Para crear su ambiente propio siga las siguientes instrucciones:
+1. Primero instalar [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
+2. Instalar la base para JupyterLab (sólo en Unix): `conda install -n base jupyterlab nb_conda_kernels`
+3. Instalar el ambiente (sólo en Unix): `conda env create -f environment.yml`
+4. Entrar al ambiente (sólo en Unix)): `conda activate fisi2028`
+4. Configurar el canal `conda-forge` con prioridad mayor que el canal por defecto (sólo en Unix): `conda config --env --add channels conda-forge`
+5. Salirse del ambiente fisi2028 y entrar en la base (sólo en Unix): `conda deactivate`
+6. Levantar el cuaderno ejecutando la siguiente instrucción (sólo en Unix): `jupyter lab --ip 0.0.0.0 --port 8888`
+7. De esta manera pueden acceder desde cualquier equipo que esté conectado a la misma red en donde está corriendo el cuaderno de Jupyter. Es muy útil cuando están compartiendo un equipo con alguien pero aún necesitan acceder al cuaderno. Se puede hacer desde el navegador de una tableta por ejemplo.
 
 ## Material del curso Métodos Computacionales de Uniandes
 
