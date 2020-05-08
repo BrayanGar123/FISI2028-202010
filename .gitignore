@@ -3,3 +3,4 @@
 test.ipynb
 data.ipynb
 data/
+__pycache__
