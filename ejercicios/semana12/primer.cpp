@@ -33,6 +33,32 @@ int main(){
     cout<<"variable i="<<i<<endl;
     cout<<i<<" + "<<j<<" = "<<i+j<<endl;
     // Asignacion de la variable
+    // Operadores:
+    //   aritmeticos: +, -, *, /, %
+    //   logicos: && (and), || (or), ! (negacion), ==
+    // Precedencia: 1+2*3/6 parentesis! ()
+    // Asignacion: =, +=, -=, *=, /= y %=
     i = 3;
-    return 0;
+    cout<<"variable i="<<i<<endl; // 3
+    i = (int) 3.4; // Correcta
+    cout<<"variable i="<<i<<endl; // 3
+    i += 3; // ==> i = i + 3 
+    cout<<"variable i="<<i<<endl; // 6
+
+    i = 8;
+    // condicionales (if, else) y loops (for y while)
+    if(i == 6){
+        cout<<"variable i="<<i<<endl; // 6
+    }
+    else if(i == 8){
+        cout<<"la variable no es correcta pero podria serlo"<<endl;
+    }
+    else{
+        cout<<"la variable no es correcta"<<endl;
+    }
+    
+    // 1. funciones
+    // 2. Arreglos y "apuntadores": strings (C,C++)
+    // 3. Archivos de datos
+    return 0; // Exit code
 }
