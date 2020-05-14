@@ -4,3 +4,5 @@ test.ipynb
 data.ipynb
 data/
 __pycache__
+a.out
+exe*
