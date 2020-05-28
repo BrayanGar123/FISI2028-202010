@@ -56,11 +56,11 @@ int main(void){
     // 1. crear un apuntador
     float *z;
     // 2. crear la memoria y asignarle la referencia al apuntador z
-    z = new  float(j); // esto lo crea en el HEAP
+    z = new  float[j]; // esto lo crea en el HEAP
     cout<<"la referencia de z es: "<<z<<endl;
     cout<<"que hay en z[0]? "<<z[0]<<endl;
     // 3. al final debemos destruir la memoria
-    delete z; z = NULL;
+    delete [] z; z = NULL;
     cout<<"la referencia de z es: "<<z<<endl;
     cout<<"que hay en z[0]? "<<z[0]<<endl;
     return 0;
