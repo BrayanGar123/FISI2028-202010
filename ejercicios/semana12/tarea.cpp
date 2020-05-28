@@ -42,7 +42,7 @@ int main(void){
     unsigned int N_x = 0;
     unsigned int N_A_r = 0,N_A_c = 0;
     // Definimos los apuntadores para el vector 'x' y la matriz 'A'
-    double *X,**A;
+    double *X,**A,**Ainversa;
     
     cout<<"Por favor ingrese la dimensión de 'X'? ";
     cin>>N_x;
@@ -136,12 +136,14 @@ int main(void){
 }
 
 // Aquí es donde usted debe escribir las funciones
-void invertirMatrix(void){
+void invertirMatrix(double **A,double **Ainversa,unsigned int m,unsigned int n){
     // Escriba la funcion que invierte la matriz
     // usando Gauss-Jordan
     cout<<"comencemos..."<<endl;
+    // cualquier cosa que yo haga sobre A o Ainversa va a quedar modificado de manera
+    // PERMANENTE
 };
-void resolverSistema(void){
+void resolverSistema(double **A,double **B,double **x,unsigned int m, unsigned int n){
     // Escriba la funcion que resuelve un sistema
     // usando Gauss-Jordan. Encuentra x en Ax=B
     // con A una matriz cuadrada y B un vector columna

@@ -60,7 +60,8 @@ int main(void){
     cout<<"la referencia de z es: "<<z<<endl;
     cout<<"que hay en z[0]? "<<z[0]<<endl;
     // 3. al final debemos destruir la memoria
-    delete [] z; z = NULL;
+    delete [] z;
+    z = nullptr;
     cout<<"la referencia de z es: "<<z<<endl;
     cout<<"que hay en z[0]? "<<z[0]<<endl;
     return 0;

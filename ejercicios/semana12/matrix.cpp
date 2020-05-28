@@ -3,9 +3,7 @@
 */
 
 #include <iostream>
-#include <fstream>
-// Por favor leer esto:
-// https://en.cppreference.com/w/c/numeric/tgmath
+#include <fstream> // escribir y leer archivos
 #include <ctgmath>
 
 using namespace std;
@@ -14,109 +12,90 @@ using namespace std;
 void hByte(unsigned int);
 
 int main(void){
-    // Más detalles en:
-    // http://www.cplusplus.com/reference/fstream/fstream/
+    
     fstream outFile1,outFile2;
-    outFile1.open ("resultados_X.txt", ios::out | ios::trunc);
-    outFile2.open ("resultados_A.txt", ios::out | ios::trunc);
-    /*
-        1. Definimos N_x como el número de elementos del vector fila 'x'
-        2. Definimos N_A_r como el número de filas de la matriz 'A'
-        3. Definimos N_A_c como el número de columnas de la matriz 'A'
-    */
-    unsigned int N_x = 0;
-    unsigned int N_A_r = 0,N_A_c = 0;
-    // Definimos los apuntadores para el vector 'x' y la matriz 'A'
+    outFile1.open("resultados_X.txt",ios::out | ios::trunc);
+    outFile2.open("resultados_A.txt",ios::out | ios::trunc);
+    
+    unsigned int N_x=0; // este es el # de sitios del vector
+    unsigned int N_A_r=0,N_A_c=0; // # de filas y # de columnas
+    // Definir los apuntadores para crear el vector
+    // y la matriz
     double *X,**A;
     
-    cout<<"Por favor ingrese la dimensión de 'X'? ";
-    cin>>N_x;
-    if(N_x > 1e6)
-        cout<<"\tDimensión muy grande, "<<N_x<<"."<<endl;
-    cout<<"Por favor ingrese las dimensiones de 'A'? (filas,columnas) ";
-    scanf("%d,%d",&N_A_r,&N_A_c);
-    if(N_A_r*N_A_c > 1e6)
-        cout<<"\tDimensión muy grande, ("<<N_A_r<<" x "<<N_A_c<<")."<<endl;
-    // Creamos el espacio para los vectores y matrices con NEW
+    cout<<"Escriba la dimensión de 'X'? ";cin>>N_x;
+    cout<<"El vector ocupará: ";
+    hByte(N_x*sizeof(double));
+    if(N_x > 1e8){
+        cout<<"(WARN) OJO, la dimensión es muy grande..."<<endl;
+        // exit(2);
+    }
+    cout<<"Escriba (filas,columnas) de la matriz 'A'? ";scanf("%d,%d",&N_A_r,&N_A_c);
+    cout<<"La matriz ocupará: ";
+    hByte(N_A_r*N_A_c*sizeof(double)+N_A_r*sizeof(double*));
+
+    if(N_A_r*N_A_c > 1e8)
+        cout<<"(WARN) OJO, la dimensión de la matriz es muy grande..."<<endl;
+
     try{
         X = new double [N_x];
-        // Inicializamos el vector con ceros
-        cout<<"(PROC) Inicializando el vector..."<<endl;
-        for(unsigned int j=0;j<N_x;j++)
+        for(int j=0;j<N_x;j++)
             X[j] = 0;
-        hByte(N_x * sizeof(double));
-    } catch(bad_alloc& el_error){
-        cerr<<"(ERROR) Error creando el vector 'X'"<<endl;
+    } catch(bad_alloc &el_error){
+        cerr<<"(ERR) Error creando el vector 'X'"<<endl;
+        exit(1);
     }
+
+    // **A significa que estamos creando un apuntador A que es la referencia
+    // a una dirección de memoria que contiene la información de otra dirección
+    // de memoria
     try{
-        // Método: primero crea un vector de apuntadores con
-        //         el número de filas (ROW-wise).
-        cout<<"Creación de matrices por filas: ROW-wise."<<endl;
-        cout<<"\tNOTA: Se puede hacer COL-wise también"<<endl;
-        A = new double* [N_A_r];
-        // // Method (a): en cada sitio del vector de apuntadores
-        // //             crea vectores fila con el número de
-        // //             columnas en cada "fila"
-        // for(unsigned int j=0;j<N_A_r;j++)
-        //    A[j] = new double[N_A_c];
-        // Method (b): crea un solo vector con el total de:
-        //             filas * columnas...
-        A[0] = new double [N_A_r*N_A_c];
-        //             luego asigna la referencia de la memoria
-        //             del 'inicio' de cada "fila" a cada sitio
-        //             del vector de apuntadores
-        for(unsigned int j=1;j<N_A_r;j++)
-            A[j] = A[0] + N_A_c*j;
-        // Inicializamos la matriz con ceros
-        cout<<"(PROC) Inicializando la matriz..."<<endl;
-        for(unsigned int j=0;j<N_A_r;j++)
-            for(unsigned int k=0;k<N_A_c;k++)
+        A = new double*[N_A_r];
+        // $%^@#$ -> 0: direccion de memoria para el vector fila 0
+        // $%^@#$+1 -> 1: direccion de memoria para el vector fila 1
+        // $%^@#$+2 -> 2: direccion de memoria para el vector fila 2
+        // etc
+        A[0] = new double [N_A_r*N_A_c]; // Garantizo que la memoria sea no-fragmetada
+        for(int j=1;j<N_A_r;j++)
+            A[j] = A[0]+N_A_c*j;
+        for(int j=0;j<N_A_r;j++)
+            for(int k=0;k<N_A_c;k++)
                 A[j][k] = 0;
-        hByte(N_A_r * N_A_c * sizeof(double));
-        
-    } catch(bad_alloc& el_error){
-        cerr<<"(ERROR) Error creando la matriz 'A'"<<endl;
+    } catch(bad_alloc &el_error){
+        cerr<<"(ERR) Error creando la matria 'A'"<<endl;
+        exit(1);
     }
     
-    cout<<"(RES) Llenamos la matriz con f(x,y)=sin(5x)cos(2y)"<<endl;
-    cout<<"      asumiendo que la 'x' varía según la fila"<<endl;
-    cout<<"      y 'y' según la columna"<<endl;
-    cout<<"(INIT) 'x' y 'y' están definidos entre [0,1], luego"<<endl;
-    cout<<"       dx = 1/(Nrows-1) y dy=1/(Ncols-1)."<<endl;
+    // queremos escribir una función f(x,y) en forma discreta
+    // f(x,y) = sin(5x)cos(2y)
+    // 'x' y 'y' están entre [0,1]
+    // x -> primer indice
+    // y -> segundo indice
+    // dx = (1-0)/(N_A_r-1)
+    // dy = (1-0)/(N_A_c-1)
+    // A[j][k] = f(0+j*dx,0+k*dy)
     double dx=1.0/(N_A_r-1),dy=1.0/(N_A_c-1);
     double x,y;
-    for(unsigned int j=0;j<N_A_r;j++)
-        for(unsigned int k=0;k<N_A_c;k++){
-            x = dx * j;
-            y = dy * k;
+    for(int j=0;j<N_A_r;j++)
+        for(int k=0;k<N_A_c;k++){
+            x = j*dx;
+            y = k*dy;
             A[j][k] = sin(5*x)*cos(2*y);
         }
 
-    cout<<"Guardamos el vector en un archivo: resultados_X.txt"<<endl;
-    for(unsigned int j=0;j<N_x;j++)
+    for(int j=0;j<N_x;j++)
         outFile1<<X[j]<<endl;
-    outFile1.close();
-    cout<<"Guardamos la matriz en un archivo: resultados_A.txt"<<endl;
-    for(unsigned int j=0;j<N_A_r;j++){
-        for(unsigned int k=0;k<N_A_c;k++)
-            outFile2<<A[j][k]<<" ";
-        // outFile2<<'\b'<<endl;
+    for(int j=0;j<N_A_r;j++){
+        for(int k=0;k<N_A_c;k++)
+            outFile2<<A[j][k]<<' ';
+        outFile2<<endl;
     }
+    // Limpieza de memoria
+    outFile1.close();
     outFile2.close();
-    cout<<"Abran los archivo con Python y grafiquen con plt.imshow()"<<endl;
-
-    cout<<"(PROC) eliminando memoria dinámica: x"<<endl;
-    delete [] X, X=nullptr;
-    cout<<"(PROC) eliminando memoria dinámica: A"<<endl;
-    // // Method (a): borra cada vector fila antes de borrar el
-    // //             vector de apuntadores
-    // for(unsigned int j = 0; j < N_A_r; j++)
-    //     delete [] A[j];
-    // delete [] A;
-    // Method (b): borra el vector fila 'completo' (que está)
-    //             en [0] y después borra el vector de apuntadores
+    delete [] X; X = nullptr;
     delete [] A[0];
-    delete [] A, A = nullptr;
+    delete [] A; A = nullptr;
     return 0;
 }
 
